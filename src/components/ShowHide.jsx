@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import { data } from '../Data'
 import ShowHideItem from './ShowHideItem';
+import { connect } from "react-redux";
 
 
-const ShowHide = () => {
+const ShowHide = ({ data }) => {
 
     const [selected, setSelected] = useState(null);
 
 
     return data.map((item, index) => (
+
         <ShowHideItem
 
             setSelected={i => setSelected(selected === i ? null : i)}
@@ -21,6 +22,9 @@ const ShowHide = () => {
 
 
 }
+const mapStateToProps = state => ({
+    data: state.data
+});
 
-export default ShowHide;
+export default connect(mapStateToProps)(ShowHide);
 
